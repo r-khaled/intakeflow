@@ -38,4 +38,22 @@ model Request {
   status        PipelineStatus @default(NEW)
   serviceId     Int
   service       Service        @relation(fields: [serviceId], references: [id])
+  activities    Activity[]
+}
+
+enum ActivityAction {
+  STATUS_CHANGE
+  NOTE
+  OTHER
+}
+
+model Activity {
+  id         Int             @id @default(autoincrement())
+  request    Request         @relation(fields: [requestId], references: [id])
+  requestId  String
+  action     ActivityAction
+  note       String?
+  oldStatus  PipelineStatus?
+  newStatus  PipelineStatus?
+  createdAt  DateTime        @default(now())
 }

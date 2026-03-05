@@ -1,12 +1,10 @@
 import { Router } from "express";
-import healthRouter from "./health.js";
 import requestsRouter from "./requests.js";
-import adminRouter from "./admin/index.js";
+import analyticsRouter from "./analytics.js";
 
 const router = Router();
 
-router.use("/health", healthRouter);
 router.use("/requests", requestsRouter);
-router.use("/api/admin", adminRouter);
+router.use("/analytics", analyticsRouter);
 
 export default router;
